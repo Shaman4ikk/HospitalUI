@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
-
+<head>
+  <title>123213</title>
+</head>
 <body>
 
 <div>
-  <button [routerLink]="['/doctor']" (click)="doctor()" class="btn btn-success">Doctor{{title}}</button>
+  <div class="card-container">
+    <button routerLink="/doctor" class="card btn btn-success">Doctor</button>
+    <button routerLink="/medicine" class="card btn btn-success">Medicine</button>
+    <button routerLink="/patient" class="card btn btn-success">Patient</button>
+    <button routerLink="/patientInfo" class="card btn btn-success">PatientInfo</button>
+  </div>
 </div>
+<router-outlet></router-outlet>
 
 </body>
 
