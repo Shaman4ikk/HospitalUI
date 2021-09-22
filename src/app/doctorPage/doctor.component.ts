@@ -79,7 +79,14 @@ export class DialogOverviewExampleDialog {
     @Inject(MAT_DIALOG_DATA) public data: Doctor) {}
 
   onNoClick(): void {
+    console.log(this.data)
+    alert(this.data);
     this.dialogRef.close();
+  }
+
+  save(data : Doctor){
+    console.log(data)
+    alert(data);
   }
 
 }
