@@ -6,7 +6,82 @@
 </head>
 
 <body>
-<p class="circle-link">PatientTest</p>
+<div style="padding-left: 10%">
+  <button mat-raised-button (click)="openDialog()">New Patient</button>
+</div>
+<div>
+  <table mat-table [dataSource]="dataSource" class="table mat-elevation-z8">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Patient Id</th>
+      <td mat-cell *matCellDef="let patient">{{patient?.id}}</td>
+    </ng-container>
 
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef>First Name</th>
+      <td mat-cell *matCellDef="let patient">
+        <input type="text" [(ngModel)]="patient.firstName" [hidden]="!patient.editing">
+        <div [hidden]="patient.editing">{{patient?.firstName}}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef>Last Name</th>
+      <td mat-cell *matCellDef="let patient">
+        <input type="text" [(ngModel)]="patient.lastName" [hidden]="!patient.editing">
+        <div [hidden]="patient.editing">{{patient?.lastName}}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="medicine">
+      <th mat-header-cell *matHeaderCellDef>Medicine</th>
+      <td mat-cell *matCellDef="let patient">
+        <div [hidden]="patient.editing">
+          <mat-select  placeholder="Select Medicines">
+            <mat-option disabled="true" *ngFor="let medicine of patient.medicine">
+              {{medicine.medicineName}}
+            </mat-option>
+          </mat-select>
+        </div>
+        <div [hidden]="!patient.editing">
+          <mat-select [(ngModel)]="patient.medicine" multiple placeholder="Edit Medicines" >
+            <mat-option *ngFor="let medicine of medicineList" [value]="medicine">
+              {{medicine.medicineName}}
+            </mat-option>
+          </mat-select>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="doctor">
+      <th mat-header-cell *matHeaderCellDef>Doctor</th>
+      <td mat-cell *matCellDef="let patient">
+        <div>{{patient?.doctor.firstName}}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="patientInfo">
+      <th mat-header-cell *matHeaderCellDef>Info</th>
+      <td mat-cell *matCellDef="let patient">
+        <input type="text" [(ngModel)]="patient?.patientInfo.info" [hidden]="!patient.editing">
+        <div [hidden]="patient.editing">{{patient?.patientInfo.info}}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>Edit</th>
+      <td mat-cell *matCellDef="let patient">
+        <button [hidden]="patient.editing" (click)="edit(patient)">Edit</button>
+        <button [hidden]="!patient.editing" (click)="save(patient)">Save</button>
+        <button [hidden]="!patient.editing" (click)="cancel(patient.position)">Cancel</button>
+        <button (click)="delete(patient)">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
 </body>
 </html>

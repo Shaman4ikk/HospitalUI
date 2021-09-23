@@ -1,8 +1,9 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Doctor} from "../classes/Doctor";
 import {Service} from "../services/Service";
 import {MatTableDataSource} from "@angular/material/table";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {MatDialog} from "@angular/material/dialog";
+import {DoctorDialogComponent} from "./doctorModal/doctorDialog.component";
 
 @Component({
   selector: 'doctor',
@@ -18,15 +19,12 @@ export class DoctorComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'edit'];
 
-  constructor(private service: Service, public dialog: MatDialog) {
-
-  }
+  constructor(private service: Service, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.service.getDoctor().subscribe(data => {
       this.doctors = data;
       this.dataSource = new MatTableDataSource(this.doctors);
-      console.log(this.doctors);
     });
   }
 
@@ -37,9 +35,7 @@ export class DoctorComponent implements OnInit {
   }
 
   save(position: number, doctor : Doctor){
-    if(this.service.updateDoctor(doctor)){
-      this.ngOnInit();
-    }
+    this.service.updateDoctor(doctor).subscribe(() => this.ngOnInit())
     return doctor.editing = false;
   }
 
@@ -51,42 +47,18 @@ export class DoctorComponent implements OnInit {
   }
 
   delete(doctor: Doctor) {
-    if(this.service.deleteDoctor(doctor)){
+    this.service.deleteDoctor(doctor).subscribe(() => {
       this.ngOnInit();
-    }
+    });
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+    const dialogRef = this.dialog.open(DoctorDialogComponent, {
       width: '250px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      alert(result)
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
     });
-  }
-
-
-}
-@Component({
-  selector: 'doctor-dialog',
-  templateUrl: 'doctorDialog.html',
-})
-export class DialogOverviewExampleDialog {
-
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: Doctor) {}
-
-  onNoClick(): void {
-    console.log(this.data)
-    alert(this.data);
-    this.dialogRef.close();
-  }
-
-  save(data : Doctor){
-    console.log(data)
-    alert(data);
   }
 
 }

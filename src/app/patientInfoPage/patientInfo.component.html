@@ -6,7 +6,36 @@
 </head>
 
 <body>
-<p class="circle-link">PatientInfoTest</p>
+<div>
+  <table mat-table [dataSource]="dataSource" class="table mat-elevation-z8">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Patient Id</th>
+      <td mat-cell *matCellDef="let patientInfo">{{patientInfo?.id}}</td>
+    </ng-container>
 
+    <ng-container matColumnDef="info">
+      <th mat-header-cell *matHeaderCellDef>Info</th>
+      <td mat-cell *matCellDef="let patientInfo">
+        <input type="text" [(ngModel)]="patientInfo.info" [hidden]="!patientInfo.editing">
+        <div [hidden]="patientInfo.editing">{{patientInfo?.info}}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>Edit</th>
+      <td mat-cell *matCellDef="let patientInfo">
+        <button [hidden]="patientInfo.editing" (click)="edit(patientInfo.position, patientInfo)">Edit</button>
+        <button [hidden]="!patientInfo.editing" (click)="save(patientInfo.position, patientInfo)">Save</button>
+        <button [hidden]="!patientInfo.editing" (click)="cancel(patientInfo.position)">Cancel</button>
+        <button (click)="delete(patientInfo)">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
 </body>
 </html>

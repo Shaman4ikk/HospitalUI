@@ -1,0 +1,39 @@
+<form [formGroup]="form">
+  <h1 mat-dialog-title>Hi</h1>
+  <div mat-dialog-content>
+    <div mat-form-field>
+      <div>First Name</div>
+      <input matInput type="text" formControlName="firstName" required/>
+    </div>
+    <div mat-form-field>
+      <div>Last Name</div>
+      <input matInput type="text" formControlName="lastName" required/>
+    </div>
+    <div>
+      <div>Doctor</div>
+      <mat-select placeholder="Select Doctor" formControlName="doctor">
+        <mat-option *ngFor="let doctor of doctors" [value]="doctor">
+          {{doctor.firstName}}
+        </mat-option>
+      </mat-select>
+    </div>
+    <div>
+      <div>Medicine</div>
+      <mat-select multiple placeholder="Select Medicines" formControlName="medicine">
+        <mat-option *ngFor="let medicine of medicineList" [value]="medicine">
+          {{medicine.medicineName}}
+        </mat-option>
+      </mat-select>
+    </div>
+    <div mat-form-field>
+      <div>Patient Info</div>
+      <input matInput type="text" formControlName="patientInfo" required/>
+    </div>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="save()">Ok</button>
+  </div>
+
+</form>

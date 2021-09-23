@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 
-import {DialogOverviewExampleDialog, DoctorComponent} from './doctor.component';
+import {DoctorComponent} from './doctor.component';
 import {CommonModule} from "@angular/common";
 import {MatTableModule} from '@angular/material/table';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -12,18 +12,16 @@ import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
-    DialogOverviewExampleDialog
   ],
   imports: [
     CommonModule,
     MatTableModule,
-    ReactiveFormsModule,
     MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
-
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [DoctorComponent]

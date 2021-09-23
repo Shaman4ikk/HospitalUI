@@ -6,7 +6,39 @@
 </head>
 
 <body>
-<p class="circle-link">MedicineTest</p>
+<div style="padding-left: 10%">
+  <button mat-raised-button (click)="openDialog()">New Medicine</button>
+</div>
+<div>
+  <table mat-table [dataSource]="dataSource" class="table mat-elevation-z8">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Id.</th>
+      <td mat-cell *matCellDef="let medicine">{{medicine?.id}}</td>
+    </ng-container>
 
+    <ng-container matColumnDef="medicineName">
+      <th mat-header-cell *matHeaderCellDef>Medicine</th>
+      <td mat-cell *matCellDef="let medicine">
+        <input type="text" [(ngModel)]="medicine.medicineName" [hidden]="!medicine.editing">
+        <div [hidden]="medicine.editing">{{medicine?.medicineName}}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>Edit</th>
+      <td mat-cell *matCellDef="let medicine">
+        <button [hidden]="medicine.editing" (click)="edit(medicine.position, medicine)">Edit</button>
+        <button [hidden]="!medicine.editing" (click)="save(medicine.position, medicine)">Save</button>
+        <button [hidden]="!medicine.editing" (click)="cancel(medicine.position)">Cancel</button>
+        <button (click)="delete(medicine)">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
 </body>
 </html>
