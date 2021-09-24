@@ -14,13 +14,15 @@
     <!-- Id Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>Id.</th>
-      <td mat-cell *matCellDef="let medicine">{{medicine?.id}}</td>
+      <td mat-cell *matCellDef="let medicine; index as i">{{i+1}}</td>
     </ng-container>
 
     <ng-container matColumnDef="medicineName">
       <th mat-header-cell *matHeaderCellDef>Medicine</th>
       <td mat-cell *matCellDef="let medicine">
-        <input type="text" [(ngModel)]="medicine.medicineName" [hidden]="!medicine.editing">
+        <mat-form-field *ngIf="medicine.editing">
+          <input matInput [(ngModel)]="medicine.medicineName" required/>
+        </mat-form-field>
         <div [hidden]="medicine.editing">{{medicine?.medicineName}}</div>
       </td>
     </ng-container>
@@ -28,10 +30,10 @@
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef>Edit</th>
       <td mat-cell *matCellDef="let medicine">
-        <button [hidden]="medicine.editing" (click)="edit(medicine.position, medicine)">Edit</button>
-        <button [hidden]="!medicine.editing" (click)="save(medicine.position, medicine)">Save</button>
-        <button [hidden]="!medicine.editing" (click)="cancel(medicine.position)">Cancel</button>
-        <button (click)="delete(medicine)">Delete</button>
+        <button mat-button *ngIf="!medicine.editing" (click)="edit(medicine.position, medicine)">Edit</button>
+        <button mat-button color="primary" *ngIf="medicine.editing" (click)="save(medicine.position, medicine)">Save</button>
+        <button mat-button *ngIf="medicine.editing" (click)="cancel(medicine.position)">Cancel</button>
+        <button mat-button color="warn" (click)="delete(medicine)">Delete</button>
       </td>
     </ng-container>
 

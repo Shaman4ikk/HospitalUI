@@ -8,7 +8,7 @@ import {Service} from "../../services/Service";
 @Component({
   selector: 'doctor-dialog',
   templateUrl: 'doctorDialog.html',
-  styleUrls: ['../doctor.component.css']
+  styleUrls: ['../../app.component.css']
 })
 export class DoctorDialogComponent {
 

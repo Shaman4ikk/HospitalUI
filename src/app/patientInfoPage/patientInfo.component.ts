@@ -6,7 +6,7 @@ import {PatientInfo} from "../classes/PatientInfo";
 @Component({
   selector: 'patientInfo',
   templateUrl: './patientInfo.component.html',
-  styleUrls: ['./patientInfo.component.css']
+  styleUrls: ['../app.component.css']
 })
 export class PatientInfoComponent {
   public patientInfos: PatientInfo[] | undefined;

@@ -1,15 +1,15 @@
 <form [formGroup]="form">
-  <h1 mat-dialog-title>Hi</h1>
+  <h1 mat-dialog-title>Create new medicine</h1>
   <div mat-dialog-content>
-    <div mat-form-field>
-      <input matInput type="text" formControlName="medicineName" required/>
-    </div>
-    <br>
+    <mat-form-field>
+      <mat-label>Medicine name</mat-label>
+      <input matInput formControlName="medicineName" required/>
+    </mat-form-field>
   </div>
 
-  <div mat-dialog-actions>
+  <mat-dialog-actions>
     <button mat-button (click)="onNoClick()">No Thanks</button>
     <button mat-button (click)="save()">Ok</button>
-  </div>
+  </mat-dialog-actions>
 
 </form>

@@ -10,14 +10,16 @@ import {FormControl} from "@angular/forms";
 @Component({
   selector: 'patient',
   templateUrl: './patient.component.html',
-  styleUrls: ['./patient.component.css']
+  styleUrls: ['../app.component.css']
 })
 export class PatientComponent {
   public patients: Patient[] | undefined;
   public oldPatient: Patient | undefined;
   public editPatient: Patient | undefined;
   public medicineList: Medicine[] | undefined;
-  public testList: Medicine[] | undefined;
+  public toppings = new FormControl();
+  public selected: Medicine[] | undefined;
+
 
   dataSource: MatTableDataSource<Patient> = new MatTableDataSource<Patient>();
 
@@ -37,7 +39,10 @@ export class PatientComponent {
     });
   }
 
+
   edit(patient : Patient){
+    // @ts-ignore
+    this.selected = this.medicineList.filter((item, i) => i % 2 === 0);
     this.oldPatient = patient;
     this.editPatient = patient;
     return patient.editing = true;
@@ -63,7 +68,7 @@ export class PatientComponent {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(PatientDialogComponent, {
-      width: '500px',
+      width: '250px',
     });
 
     dialogRef.afterClosed().subscribe(() => {

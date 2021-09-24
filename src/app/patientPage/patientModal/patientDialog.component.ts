@@ -10,6 +10,7 @@ import {PatientInfo} from "../../classes/PatientInfo";
 @Component({
   selector: 'patient-dialog',
   templateUrl: 'patientDialog.html',
+  styleUrls: ['../../app.component.css']
 })
 export class PatientDialogComponent {
 

@@ -1,39 +1,44 @@
 <form [formGroup]="form">
-  <h1 mat-dialog-title>Hi</h1>
+  <h1 mat-dialog-title>Create new patient</h1>
   <div mat-dialog-content>
-    <div mat-form-field>
-      <div>First Name</div>
-      <input matInput type="text" formControlName="firstName" required/>
-    </div>
-    <div mat-form-field>
-      <div>Last Name</div>
-      <input matInput type="text" formControlName="lastName" required/>
-    </div>
-    <div>
-      <div>Doctor</div>
+
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" required/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" required/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Doctor</mat-label>
       <mat-select placeholder="Select Doctor" formControlName="doctor">
         <mat-option *ngFor="let doctor of doctors" [value]="doctor">
           {{doctor.firstName}}
         </mat-option>
       </mat-select>
-    </div>
-    <div>
-      <div>Medicine</div>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Medicine</mat-label>
       <mat-select multiple placeholder="Select Medicines" formControlName="medicine">
         <mat-option *ngFor="let medicine of medicineList" [value]="medicine">
           {{medicine.medicineName}}
         </mat-option>
       </mat-select>
-    </div>
-    <div mat-form-field>
-      <div>Patient Info</div>
-      <input matInput type="text" formControlName="patientInfo" required/>
-    </div>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Patient Info</mat-label>
+      <input matInput formControlName="patientInfo" required/>
+    </mat-form-field>
   </div>
 
-  <div mat-dialog-actions>
+  <mat-dialog-actions>
     <button mat-button (click)="onNoClick()">No Thanks</button>
     <button mat-button (click)="save()">Ok</button>
-  </div>
+  </mat-dialog-actions>
 
 </form>

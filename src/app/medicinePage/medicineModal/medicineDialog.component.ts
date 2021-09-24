@@ -8,6 +8,7 @@ import {Medicine} from "../../classes/Medicine";
 @Component({
   selector: 'medicine-dialog',
   templateUrl: 'medicineDialog.html',
+  styleUrls:['../../app.component.css']
 })
 export class MedicineDialogComponent {
 

@@ -284,6 +284,13 @@ svg#clouds {
   }
 }
 
+.table{
+  margin-right: auto;
+  margin-left: auto;
+  align-items: center;
+  width: 80%;
+}
+
 @media screen and (max-width: 575px) {
   svg#rocket-smoke {
     display: none;

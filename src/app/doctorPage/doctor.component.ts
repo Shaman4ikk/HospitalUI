@@ -8,7 +8,7 @@ import {DoctorDialogComponent} from "./doctorModal/doctorDialog.component";
 @Component({
   selector: 'doctor',
   templateUrl: './doctor.component.html',
-  styleUrls: ['./doctor.component.css']
+  styleUrls: ['../app.component.css']
 })
 export class DoctorComponent implements OnInit {
 
