@@ -4,6 +4,7 @@ import {Service} from "../services/Service";
 import {MatDialog} from "@angular/material/dialog";
 import {Medicine} from "../classes/Medicine";
 import {MedicineDialogComponent} from "./medicineModal/medicineDialog.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'medicine',
@@ -20,7 +21,8 @@ export class MedicineComponent implements OnInit{
 
   displayedColumns: string[] = ['id', 'medicineName', 'edit'];
 
-  constructor(private service: Service, public dialog: MatDialog) {}
+  constructor(private service: Service, public dialog: MatDialog, private _snackBar: MatSnackBar) {
+  }
 
   ngOnInit(): void {
     this.service.getMedicines().subscribe(data => {
@@ -50,6 +52,8 @@ export class MedicineComponent implements OnInit{
   delete(medicine: Medicine) {
     this.service.deleteMedicine(medicine).subscribe(() => {
       this.ngOnInit();
+    }, error => {
+      this.openSnackBar("Couldn`t delete medicine");
     });
   }
   openDialog(): void {
@@ -61,6 +65,8 @@ export class MedicineComponent implements OnInit{
       this.ngOnInit();
     });
   }
-
+  openSnackBar(message: string) {
+    this._snackBar.open(message);
+  }
 
 }

@@ -48,7 +48,7 @@
           </mat-select>
         </div>
         <div [hidden]="!patient.editing">
-          <mat-select [(ngModel)]="selected" [formControl]="toppings" multiple placeholder="Edit Medicines" >
+          <mat-select [(ngModel)]="patient.medicine" multiple placeholder="Edit Medicines" >
             <mat-option *ngFor="let medicine of medicineList" [value]="medicine">
               {{medicine.medicineName}}
             </mat-option>

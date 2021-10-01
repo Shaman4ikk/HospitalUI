@@ -20,7 +20,6 @@ export class PatientComponent {
   public toppings = new FormControl();
   public selected: Medicine[] | undefined;
 
-
   dataSource: MatTableDataSource<Patient> = new MatTableDataSource<Patient>();
 
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'medicine', 'doctor', 'patientInfo', 'edit'];
@@ -41,8 +40,7 @@ export class PatientComponent {
 
 
   edit(patient : Patient){
-    // @ts-ignore
-    this.selected = this.medicineList.filter((item, i) => i % 2 === 0);
+    alert(patient.medicine)
     this.oldPatient = patient;
     this.editPatient = patient;
     return patient.editing = true;

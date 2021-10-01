@@ -19,6 +19,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MedicineDialogComponent} from "./medicinePage/medicineModal/medicineDialog.component";
 import {MatSelectModule} from "@angular/material/select";
 import {PatientDialogComponent} from "./patientPage/patientModal/patientDialog.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 const appRoutes: Routes = [
   {path: 'doctor', component: DoctorComponent},
@@ -50,9 +51,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MatInputModule,
     MatSelectModule,
-
   ],
-  providers: [HttpClientModule, Service, MatDialogModule, FormBuilder],
+  providers: [HttpClientModule, Service, MatDialogModule, FormBuilder, MatSnackBar],
   bootstrap: [AppComponent],
   exports: [RouterModule]
 })
