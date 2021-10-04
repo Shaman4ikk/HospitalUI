@@ -20,6 +20,7 @@ import {MedicineDialogComponent} from "./medicinePage/medicineModal/medicineDial
 import {MatSelectModule} from "@angular/material/select";
 import {PatientDialogComponent} from "./patientPage/patientModal/patientDialog.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {User} from "./classes/User";
 
 const appRoutes: Routes = [
   {path: 'doctor', component: DoctorComponent},
@@ -52,7 +53,7 @@ const appRoutes: Routes = [
     MatInputModule,
     MatSelectModule,
   ],
-  providers: [HttpClientModule, Service, MatDialogModule, FormBuilder, MatSnackBar],
+  providers: [HttpClientModule, Service, MatDialogModule, FormBuilder, MatSnackBar, User],
   bootstrap: [AppComponent],
   exports: [RouterModule]
 })

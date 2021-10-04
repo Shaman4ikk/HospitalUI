@@ -4,7 +4,13 @@
   <title>123213</title>
 </head>
 <body>
-
+<div class="container">
+  <ul class="nav nav-pills">
+    <li><a routerLinkActive="active" routerLink="/home">Home</a></li>
+    <li><a routerLinkActive="active" routerLink="/login">Login</a></li>
+    <li><a (click)="logout()">Logout</a></li>
+  </ul>
+</div>
 <div>
   <div class="card-container">
     <button routerLink="/doctor" class="card btn btn-success">Doctor</button>

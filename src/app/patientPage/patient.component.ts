@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {Service} from "../services/Service";
 import {Patient} from "../classes/Patient";
 import {PatientDialogComponent} from "./patientModal/patientDialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {Medicine} from "../classes/Medicine";
-import {FormControl} from "@angular/forms";
+import {Doctor} from "../classes/Doctor";
 
 @Component({
   selector: 'patient',
@@ -17,8 +17,7 @@ export class PatientComponent {
   public oldPatient: Patient | undefined;
   public editPatient: Patient | undefined;
   public medicineList: Medicine[] | undefined;
-  public toppings = new FormControl();
-  public selected: Medicine[] | undefined;
+  public doctorList: Doctor[] | undefined;
 
   dataSource: MatTableDataSource<Patient> = new MatTableDataSource<Patient>();
 
@@ -36,11 +35,17 @@ export class PatientComponent {
     this.service.getMedicines().subscribe(data => {
       this.medicineList = data;
     });
+
+    this.service.getDoctor().subscribe(data => {
+      this.doctorList = data;
+    })
   }
 
+  compare(o1: any, o2:any): boolean {
+    return o1.medicineName === o2.medicineName;
+  };
 
   edit(patient : Patient){
-    alert(patient.medicine)
     this.oldPatient = patient;
     this.editPatient = patient;
     return patient.editing = true;

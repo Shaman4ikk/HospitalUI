@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {Component} from '@angular/core';
 import {Service} from "./services/Service";
+import {User} from "./classes/User";
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,14 @@ import {Service} from "./services/Service";
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent{
-  constructor(private router: Router, private service: Service){}
+  public user: User | undefined;
 
-  title='startt';
+  constructor(private service: Service){
+  }
 
+  title='Hospital UI';
 
+  logout(){
+    alert("Logout");
+  }
 }
